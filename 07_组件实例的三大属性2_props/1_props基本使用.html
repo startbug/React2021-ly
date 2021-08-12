@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>模板</title>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转换成js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //1.创建组件
+      class Person extends React.Component {
+        state = {
+          name: "名字",
+        };
+
+        render() {
+          console.log(this);
+          const { name, age, birth } = this.props;
+          return (
+            <ul>
+              <li>名字:{name}</li>
+              <li>年龄:{age}</li>
+              <li>出生日期:{birth}</li>
+            </ul>
+          );
+        }
+      }
+      ReactDOM.render(
+        <Person name="lucy" age={18} birth={new Date().toLocaleTimeString()} />,
+        document.querySelector("#test1")
+      );
+      const json = {
+        name: "test",
+        age: 1111,
+        birth: new Date().toLocaleTimeString(),
+      };
+      ReactDOM.render(<Person {...json} />, document.querySelector("#test2"));
+
+      
+    </script>
+  </body>
+</html>

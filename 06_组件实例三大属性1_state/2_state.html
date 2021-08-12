@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>模板</title>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转换成js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //1.创建组件
+      class Weather extends React.Component {
+        state = {
+          isLucy: false,
+          chance: "斯阔达",
+        };
+
+        render() {
+          return (
+            <h1 onClick={this.changeWeather}>
+              {this.state.isLucy
+                ? "入职两天，倒霉两天...."
+                : "啊啊啊啊啊啊啊啊啊啊啊"}
+              ，{this.state.chance}
+            </h1>
+          );
+        }
+
+        /**
+         * 箭头函数没有this，如果函数内使用了this，那么会向上查找this，changeWeather方法是通过render方法调用，
+         * render方法在React中通过实例对象调用，那么render中就是当前实例对象，而changeWeather也是当前实例对象
+         */
+        changeWeather = () => {
+          const isLucy = this.state.isLucy;
+          this.setState({
+            isLucy: !isLucy,
+          });
+        };
+      }
+      ReactDOM.render(<Weather />, document.querySelector("#test"));
+    </script>
+  </body>
+</html>
