@@ -24,6 +24,12 @@
     <script type="text/babel">
       //1.创建组件
       class Person extends React.Component {
+        constructor() {
+          //构造器是否接收props,是否传入给super,取决于是否希望在构造器中通过this访问props
+          super();
+          console.log("constructor:", this.props);
+        }
+
         state = {
           name: "名字",
         };
@@ -41,22 +47,22 @@
             </ul>
           );
         }
+
+        //对标签属性进行类型、必要性的限制
+        static propTypes = {
+          name: PropTypes.string.isRequired, //限制name必传,并且是字符串
+          // birth: PropTypes.string, //限制sex非必传,且为字符串
+          age: PropTypes.number, //限制age非必传,且为数字
+          speak: PropTypes.func, //限制speak非必传,且为函数
+        };
+
+        //指定默认标签属性值
+        static defaultProps = {
+          // age: 22, //设置年龄的默认值为22
+          // birth: "生日啦",
+          name: "lucy",
+        };
       }
-
-      //对标签属性进行类型、必要性的限制
-      Person.propTypes = {
-        name: PropTypes.string.isRequired, //限制name必传,并且是字符串
-        // birth: PropTypes.string, //限制sex非必传,且为字符串
-        age: PropTypes.number, //限制age非必传,且为数字
-        speak: PropTypes.func, //限制speak非必传,且为函数
-      };
-
-      //指定默认标签属性值
-      Person.defaultProps = {
-        // age: 22, //设置年龄的默认值为22
-        // birth: "生日啦",
-        name: "lucy",
-      };
 
       ReactDOM.render(
         <Person age={20} speak={speak} />,

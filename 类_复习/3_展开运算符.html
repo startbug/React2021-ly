@@ -22,11 +22,19 @@
       console.log(sum(1, 6, 2, 6));
 
       //...运算符不能展开对象
-      //   let person = {
-      //     name: "lucy",
-      //     age: 18,
-      //   };
-      //   console.log(...person);
+      let person = {
+        name: "lucy",
+        age: 18,
+      };
+      //复制对象
+      let person2 = { ...person };
+      person.name = "fuckoff";
+      console.log(person);
+      console.log(person2);
+
+      //合并
+      let person3 = { ...person, name: "jack", address: "地球" };
+      console.log(person3);
     </script>
   </body>
 </html>

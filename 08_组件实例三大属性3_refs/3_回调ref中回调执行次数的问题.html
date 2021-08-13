@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>3_回调ref中回调执行次数的问题</title>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转换成js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //创建组件
+      class Demo extends React.Component {
+        state = {
+          isHot: true,
+        };
+
+        showData = () => {
+          const { input1 } = this;
+          console.log(input1.value);
+        };
+
+        changeWeather = () => {
+          this.setState({ isHot: !this.state.isHot });
+        };
+
+        showInput = (currentNode) => {
+          this.input1 = currentNode;
+          console.log("@", currentNode);
+        };
+
+        render() {
+          return (
+            <div>
+              <div>今天天气:{this.state.isHot ? "炎热" : "凉爽"}</div>
+              {/* <input
+               ref={(c) => {    //当渲染的节点发生更改后,会调用两次该函数,第一次返回的参数是null,之后才是返回真实节点
+                 this.input1 = c;
+                 console.log("@", c);
+               }
+                ref={this.showInput}
+                placeholder="输入内容点击显示"
+                type="text"
+              />*/}
+              <input
+                ref={this.showInput}
+                placeholder="输入内容点击显示"
+                type="text"
+              />
+              <button onClick={this.showData}>惦记我啊</button>
+              <button onClick={this.changeWeather}>变更天气</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Demo />, document.querySelector("#test"));
+    </script>
+  </body>
+</html>

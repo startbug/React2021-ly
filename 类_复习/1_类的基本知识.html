@@ -20,7 +20,10 @@
           //通过实例对象调用speak时，speak中的this对象就是Person实例
           console.log(`${this.name}+++++${this.age}`);
         }
+        static demo = 100;
       }
+
+      console.log(Person.demo);
 
       class Student extends Person {
         constructor(name, age, grade) {

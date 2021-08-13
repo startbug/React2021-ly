@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>1_字符串形式的ref</title>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转换成js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //创建组件
+      class Demo extends React.Component {
+        showData = () => {
+          const { input1 } = this;
+          console.log(input1.value);
+        };
+
+        showData2 = () => {
+          const { input2 } = this;
+          console.log(input2.value);
+        };
+
+        render() {
+          return (
+            <div>
+              <input
+                ref={(c) => (this.input1 = c)}
+                placeholder="输入内容点击显示"
+                type="text"
+              />
+              <button onClick={this.showData}>惦记我啊</button>
+              <input
+                ref={(c) => (this.input2 = c)}
+                onBlur={this.showData2}
+                placeholder="失去焦点显示"
+                type="text"
+              />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Demo />, document.querySelector("#test"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>模板</title>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转换成js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //创建组件
+      //生命周期
+      class Life extends React.Component {
+        state = {
+          opacity: 1,
+        };
+
+        death = () => {
+          //卸载组件
+          ReactDOM.unmountComponentAtNode(document.querySelector("#test"));
+        };
+
+        //组件挂载完毕后执行---react调用该方法，this是当前实例对象
+        componentDidMount() {
+          this.timer = setInterval(() => {
+            //获取原状态
+            let { opacity } = this.state;
+
+            //减小0.1
+            opacity -= 0.01;
+            if (opacity <= 0) opacity = 1;
+
+            //设置新的透明度
+            this.setState({ opacity });
+          }, 20);
+        }
+
+        //组件将要卸载时执行---react调用该方法，this是当前实例对象
+        componentWillUnmount() {
+          clearInterval(this.timer);
+        }
+
+        //初始化渲染、装填更新之后
+        render() {
+          return (
+            <div>
+              <h1 style={{ opacity: this.state.opacity }}>赚不到钱，人生gg</h1>
+              <button onClick={this.death}>人生重来</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Life />, document.querySelector("#test"));
+    </script>
+  </body>
+</html>
