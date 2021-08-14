@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>模板</title>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel，用于将jsx转换成js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      class Clock extends React.Component {
+        state = {
+          now: new Date().toLocaleTimeString(),
+        };
+
+        componentDidMount() {
+          setInterval(() => {
+            this.setState({
+              now: new Date().toLocaleTimeString(),
+            });
+          }, 1000);
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>Hello World!</h1>
+              <input type="text" />
+              <span>现在的时间是:{this.state.now}</span>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Clock />, document.querySelector("#test"));
+    </script>
+  </body>
+</html>
