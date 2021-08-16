@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./components/Header";
@@ -28,9 +28,7 @@ export default class App extends Component {
                 <Switch>
                   {/* 注册路由 */}
                   <Route path="/about" component={About} />
-                  <Route path="/home" component={Home} />
-                  {/* d当前面的路由都没有匹配的时候，由Redirect进行兜底，跳转到指定的路径 */}
-                  <Redirect to="about" />
+                  <Route exact={true} path="/home" component={Home} />
                 </Switch>
               </div>
             </div>

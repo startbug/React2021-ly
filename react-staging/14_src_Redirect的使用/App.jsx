@@ -28,7 +28,7 @@ export default class App extends Component {
                 <Switch>
                   {/* 注册路由 */}
                   <Route path="/about" component={About} />
-                  <Route path="/home" component={Home} />
+                  <Route exact={true} path="/home" component={Home} />
                   {/* d当前面的路由都没有匹配的时候，由Redirect进行兜底，跳转到指定的路径 */}
                   <Redirect to="about" />
                 </Switch>
