@@ -18,16 +18,9 @@ export default class Message extends Component {
           {this.state.messageArr.map((message) => {
             return (
               <li key={message.id}>
-                {/* 方式一：向路由组件传递params参数 */}
-                {/* <Link
-                  to={`/home/message/detail/${message.title}/${message.id}`}
-                >
-                  {message.title}
-                </Link> */}
-
-                {/* 方式二：向路由组件传递search参数 */}
+                {/* 向路由组件传递params参数 */}
                 <Link
-                  to={`/home/message/detail?id=${message.id}&title=${message.title}`}
+                  to={`/home/message/detail/${message.title}/${message.id}`}
                 >
                   {message.title}
                 </Link>
@@ -36,11 +29,8 @@ export default class Message extends Component {
           })}
         </ul>
         <hr />
-        {/* 方式一：声明接受params参数 */}
-        {/* <Route path="/home/message/detail/:title/:id" component={Detail} /> */}
-
-        {/* 方式二：search参数无需声明接受 */}
-        <Route path="/home/message/detail" component={Detail} />
+        {/* 声明接受params参数 */}
+        <Route path="/home/message/detail/:title/:id" component={Detail} />
       </div>
     );
   }
