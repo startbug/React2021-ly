@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DatePicker, Space, Button } from "antd";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import { FireOutlined, LeftOutlined, SearchOutlined } from "@ant-design/icons";
 const { RangePicker } = DatePicker;
 export default class App extends Component {
