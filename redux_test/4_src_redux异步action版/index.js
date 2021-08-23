@@ -1,9 +1,10 @@
 import ReactDOM from "react-dom";
 import App from "./App";
+import Count from "./components/Count";
 
 ReactDOM.render(
   <div>
-    <App />
+    <Count />
   </div>,
   document.querySelector("#root")
 );
