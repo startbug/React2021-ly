@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "antd": "^4.16.12",
     "pubsub-js": "^1.9.3",
     "react-router-dom": "^5.2.0"
   }
